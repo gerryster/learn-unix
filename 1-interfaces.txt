@@ -1,0 +1,22 @@
+# Commands which demonstrait the basic shell interfaces of standard in, out, error and exit code.
+
+ruby -e'STDOUT.puts("this is standard output"); STDERR.puts("this is standard error")' 
+
+# redirect with ">", "2>" and ">>".
+
+ruby -e'puts("hello: " + STDIN.read())'
+
+# pipes
+ruby -e'STDOUT.puts("this is standard output"); STDERR.puts("this is standard error")' | ruby -e'puts("hello: " + STDIN.read())'
+
+## tee
+ruby -e'STDOUT.puts("this is standard output"); STDERR.puts("this is standard out 2")' | tee output
+
+## redirect standard error to standard out: 2>&1
+ruby -e'STDOUT.puts("this is standard output"); STDERR.puts("this is standard out 2")' 2>&1 | tee output
+
+# Exit code
+true
+false
+## uses the exit code to include how many years off the guess is from the actual
+ruby -e'guess = ARGV[0]; year = open("linus-torvals-birth-year.txt").read.chomp; if(year == guess) then puts "correct!" else puts "incorrect"; exit((year.to_i - guess.to_i).abs) end'
