@@ -18,7 +18,14 @@ ruby -e'STDOUT.puts("this is standard output"); STDERR.puts("this is standard ou
 # Exit code
 true
 false
-## uses the exit code to include how many years off the guess is from the actual
-ruby -e'guess = ARGV[0]; year = open("linus-torvals-birth-year.txt").read.chomp; if(year == guess) then puts "correct!" else puts "incorrect"; exit((year.to_i - guess.to_i).abs) end'
+
 ## check the return value in the $? variable
 echo $?
+
+# Set the exit code manually in your program:
+ruby -e 'exit(42)'
+
+### Pro tip: include the previous command's exit code in your prompt.  Make sure that "$?" is included in PS1.
+
+## uses the exit code to include how many years off the guess is from the actual
+ruby -e'guess = ARGV[0]; year = open("linus-torvals-birth-year.txt").read.chomp; if(year == guess) then puts "correct!" else puts "incorrect"; exit((year.to_i - guess.to_i).abs) end'
